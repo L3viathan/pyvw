@@ -27,6 +27,7 @@ Test suites defeated:
 
 - unittest
 - pytest
+- nose
 
 # Credits
 
