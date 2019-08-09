@@ -1,0 +1,28 @@
+[commit]
+command = 'git add setup.py && git commit -am "Version bump ($(grep version setup.py | cut -f 2 -d\"))"'
+
+[tag]
+command = 'git tag $(grep version setup.py | cut -f 2 -d\")'
+
+[push]
+command = 'git push'
+
+[pushtags]
+command = 'git push --tags'
+
+[check_clean]
+command = 'git status | grep clean'
+
+[checks]
+pipeline = ["check_clean", "push"]
+
+[sdist]
+command = 'python3 setup.py sdist'
+
+[devpipush]
+command = 'twine upload'
+
+[publish]
+pipeline = ["_versionbump", "commit", "tag", "push", "pushtags", 'sdist', 'devpipush']
+run_if = "checks"
+aliases = ["p"]
