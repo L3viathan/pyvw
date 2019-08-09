@@ -22,7 +22,10 @@ command = 'python3 setup.py sdist'
 [devpipush]
 command = 'twine upload dist/*'
 
+[cleanup]
+command = 'rm -rf dist'
+
 [publish]
-pipeline = ["_versionbump", "commit", "tag", "push", "pushtags", 'sdist', 'devpipush']
+pipeline = ["_versionbump", "commit", "tag", "push", "pushtags", 'sdist', 'devpipush', 'cleanup']
 run_if = "checks"
 aliases = ["p"]
