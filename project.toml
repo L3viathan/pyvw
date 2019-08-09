@@ -20,7 +20,7 @@ pipeline = ["check_clean", "push"]
 command = 'python3 setup.py sdist'
 
 [devpipush]
-command = 'twine upload'
+command = 'twine upload dist/*'
 
 [publish]
 pipeline = ["_versionbump", "commit", "tag", "push", "pushtags", 'sdist', 'devpipush']
